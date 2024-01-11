@@ -14,11 +14,21 @@ const Button = (props) => {
 
 const Data = (props) => {
   const [good, neutral, bad] = props.stats
+  const all = good + bad + neutral
+  let avg = (good - bad) / all
+  let pos = (good / all) * 100
+  if (all === 0) {
+    avg = "can't calculate yet"
+    pos = "can't calculate yet"
+  }
   return (
     <p>
       good {good} <br/>
       neutral {neutral} <br/>
       bad {bad} <br/>
+      all {all} <br/>
+      average {avg} <br/>
+      positive {pos} %
     </p>
   )
 }
