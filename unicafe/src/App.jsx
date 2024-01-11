@@ -12,15 +12,16 @@ const Button = (props) => {
   )
 }
 
-const Data = (props) => {
+const Statistics = (props) => {
   const [good, neutral, bad] = props.stats
   const all = good + bad + neutral
+  if (all === 0) {
+    return (
+      <p>No feedback given</p>
+    )
+  }
   let avg = (good - bad) / all
   let pos = (good / all) * 100
-  if (all === 0) {
-    avg = "can't calculate yet"
-    pos = "can't calculate yet"
-  }
   return (
     <p>
       good {good} <br/>
@@ -46,7 +47,7 @@ const App = () => {
       <Button handler={() => setNeutral(neutral + 1)} text="neutral" />
       <Button handler={() => setBad(bad + 1)} text="bad" />
       <Header title="statistics" />
-      <Data stats={[good, neutral, bad]} />
+      <Statistics stats={[good, neutral, bad]} />
     </div>
   )
 }
