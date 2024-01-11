@@ -20,18 +20,29 @@ const Statistics = (props) => {
       <p>No feedback given</p>
     )
   }
-  let avg = (good - bad) / all
-  let pos = (good / all) * 100
+  const avg = (good - bad) / all
+  const pos = `${(good / all) * 100} %`
   return (
-    <p>
-      good {good} <br/>
-      neutral {neutral} <br/>
-      bad {bad} <br/>
-      all {all} <br/>
-      average {avg} <br/>
-      positive {pos} %
-    </p>
+    <table>
+      <tbody>
+        <StatisticsLine text="good" value={good} /> 
+        <StatisticsLine text="neutral" value={neutral} /> 
+        <StatisticsLine text="bad" value={bad} /> 
+        <StatisticsLine text="all" value={all} />
+        <StatisticsLine text="average" value={avg} />
+        <StatisticsLine text="positive" value={pos} />
+      </tbody>
+    </table>
   )
+}
+
+const StatisticsLine = ({text, value}) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  ) 
 }
 
 const App = () => {
