@@ -6,6 +6,12 @@ const Button = (props) => {
   )
 }
 
+const Header = (props) => {
+  return (
+    <h1>{props.text}</h1>
+  )
+}
+
 const Anecdote = (props) => {
   return (
     <p>
@@ -41,11 +47,18 @@ const App = () => {
     updateVotes(copyOfVotes)
   }
 
+  const mostVotes = () => {
+    return Math.max(...votes)
+  }
+
   return (
     <div>
+      <Header text={"Anecdote of the day"} />
       <Anecdote anecdote={anecdotes[selected]} votes={votes[selected]} />
       <Button handler={handleVote} text="vote" />
       <Button handler={handleNextAnecdote} text="next anecdote" />
+      <Header text={"Anecdote with most votes"} />
+      <Anecdote anecdote={anecdotes[votes.indexOf(mostVotes())]} votes={mostVotes()} />
     </div>
   )
 }
